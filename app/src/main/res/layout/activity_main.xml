@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_deep"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <!-- 显示区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom|end"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvExpression"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:maxLines="2"
+            android:ellipsize="start"
+            android:letterSpacing="0.04"
+            android:text=""
+            android:textColor="@color/text_secondary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="start"
+            android:text="0"
+            android:textColor="@color/text_primary"
+            android:textSize="56sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <!-- 键盘 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/KeyRow">
+            <Button android:id="@+id/btnClear" style="@style/KeyFn" android:text="@string/label_clear" />
+            <ImageButton android:id="@+id/btnBack" style="@style/KeyFn" android:contentDescription="@string/label_back" android:scaleType="center" android:src="@drawable/ic_backspace" />
+            <Button android:id="@+id/btnPercent" style="@style/KeyFn" android:text="@string/label_percent" />
+            <Button android:id="@+id/btnDivide" style="@style/KeyOp" android:text="@string/label_divide" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/KeyRow">
+            <Button android:id="@+id/btn7" style="@style/KeyNum" android:text="7" />
+            <Button android:id="@+id/btn8" style="@style/KeyNum" android:text="8" />
+            <Button android:id="@+id/btn9" style="@style/KeyNum" android:text="9" />
+            <Button android:id="@+id/btnMultiply" style="@style/KeyOp" android:text="@string/label_multiply" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/KeyRow">
+            <Button android:id="@+id/btn4" style="@style/KeyNum" android:text="4" />
+            <Button android:id="@+id/btn5" style="@style/KeyNum" android:text="5" />
+            <Button android:id="@+id/btn6" style="@style/KeyNum" android:text="6" />
+            <Button android:id="@+id/btnMinus" style="@style/KeyOp" android:text="@string/label_minus" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/KeyRow">
+            <Button android:id="@+id/btn1" style="@style/KeyNum" android:text="1" />
+            <Button android:id="@+id/btn2" style="@style/KeyNum" android:text="2" />
+            <Button android:id="@+id/btn3" style="@style/KeyNum" android:text="3" />
+            <Button android:id="@+id/btnPlus" style="@style/KeyOp" android:text="@string/label_plus" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/KeyRow">
+            <Button android:id="@+id/btnSign" style="@style/KeyNum" android:text="@string/label_sign" />
+            <Button android:id="@+id/btn0" style="@style/KeyNum" android:text="@string/label_zero" />
+            <Button android:id="@+id/btnDot" style="@style/KeyNum" android:text="@string/label_dot" />
+            <Button android:id="@+id/btnEquals" style="@style/KeyEq" android:text="@string/label_equals" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">计算器</string>
+    <string name="label_clear">C</string>
+    <string name="label_back">⌫</string>
+    <string name="label_percent">%</string>
+    <string name="label_divide">÷</string>
+    <string name="label_multiply">×</string>
+    <string name="label_minus">−</string>
+    <string name="label_plus">+</string>
+    <string name="label_equals">=</string>
+    <string name="label_dot">.</string>
+    <string name="label_sign">±</string>
+    <string name="label_zero">0</string>
+</resources>
