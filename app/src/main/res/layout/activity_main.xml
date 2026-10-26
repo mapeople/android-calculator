@@ -55,38 +55,38 @@
         android:orientation="vertical">
 
         <LinearLayout style="@style/KeyRow">
-            <Button android:id="@+id/btnClear" style="@style/KeyFn" android:text="@string/label_clear" />
+            <TextView android:id="@+id/btnClear" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_clear" />
             <ImageButton android:id="@+id/btnBack" style="@style/KeyFn" android:contentDescription="@string/label_back" android:scaleType="center" android:src="@drawable/ic_backspace" />
-            <Button android:id="@+id/btnPercent" style="@style/KeyFn" android:text="@string/label_percent" />
-            <Button android:id="@+id/btnDivide" style="@style/KeyOp" android:text="@string/label_divide" />
+            <TextView android:id="@+id/btnPercent" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_percent" />
+            <TextView android:id="@+id/btnDivide" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_divide" />
         </LinearLayout>
 
         <LinearLayout style="@style/KeyRow">
-            <Button android:id="@+id/btn7" style="@style/KeyNum" android:text="7" />
-            <Button android:id="@+id/btn8" style="@style/KeyNum" android:text="8" />
-            <Button android:id="@+id/btn9" style="@style/KeyNum" android:text="9" />
-            <Button android:id="@+id/btnMultiply" style="@style/KeyOp" android:text="@string/label_multiply" />
+            <TextView android:id="@+id/btn7" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="7" />
+            <TextView android:id="@+id/btn8" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="8" />
+            <TextView android:id="@+id/btn9" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="9" />
+            <TextView android:id="@+id/btnMultiply" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_multiply" />
         </LinearLayout>
 
         <LinearLayout style="@style/KeyRow">
-            <Button android:id="@+id/btn4" style="@style/KeyNum" android:text="4" />
-            <Button android:id="@+id/btn5" style="@style/KeyNum" android:text="5" />
-            <Button android:id="@+id/btn6" style="@style/KeyNum" android:text="6" />
-            <Button android:id="@+id/btnMinus" style="@style/KeyOp" android:text="@string/label_minus" />
+            <TextView android:id="@+id/btn4" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="4" />
+            <TextView android:id="@+id/btn5" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="5" />
+            <TextView android:id="@+id/btn6" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="6" />
+            <TextView android:id="@+id/btnMinus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_minus" />
         </LinearLayout>
 
         <LinearLayout style="@style/KeyRow">
-            <Button android:id="@+id/btn1" style="@style/KeyNum" android:text="1" />
-            <Button android:id="@+id/btn2" style="@style/KeyNum" android:text="2" />
-            <Button android:id="@+id/btn3" style="@style/KeyNum" android:text="3" />
-            <Button android:id="@+id/btnPlus" style="@style/KeyOp" android:text="@string/label_plus" />
+            <TextView android:id="@+id/btn1" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="1" />
+            <TextView android:id="@+id/btn2" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="2" />
+            <TextView android:id="@+id/btn3" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="3" />
+            <TextView android:id="@+id/btnPlus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_plus" />
         </LinearLayout>
 
         <LinearLayout style="@style/KeyRow">
-            <Button android:id="@+id/btnSign" style="@style/KeyNum" android:text="@string/label_sign" />
-            <Button android:id="@+id/btn0" style="@style/KeyNum" android:text="@string/label_zero" />
-            <Button android:id="@+id/btnDot" style="@style/KeyNum" android:text="@string/label_dot" />
-            <Button android:id="@+id/btnEquals" style="@style/KeyEq" android:text="@string/label_equals" />
+            <TextView android:id="@+id/btnSign" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_sign" />
+            <TextView android:id="@+id/btn0" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_zero" />
+            <TextView android:id="@+id/btnDot" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_dot" />
+            <TextView android:id="@+id/btnEquals" style="@style/KeyEq" android:clickable="true" android:focusable="true" android:text="@string/label_equals" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
