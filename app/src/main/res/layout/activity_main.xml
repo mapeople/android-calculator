@@ -1,92 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_deep"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp">
+    android:background="@color/bg_deep">
 
-    <!-- 显示区 -->
+    <!-- 光线追踪背景 + 液态玻璃面板（后台线程一次性渲染，逐帧只画位图） -->
+    <com.mapeople.calculator.SceneView
+        android:id="@+id/sceneView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom|end"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="16dp">
+        android:fitsSystemWindows="true"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="18dp">
 
-        <TextView
-            android:id="@+id/tvExpression"
+        <!-- 顶栏 -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:maxLines="2"
-            android:ellipsize="start"
-            android:letterSpacing="0.04"
-            android:text=""
-            android:textColor="@color/text_secondary"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvResult"
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="0.22"
+                android:text="@string/title_glass"
+                android:textColor="#8FFFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- 显示区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="bottom|end"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="18dp">
+
+            <TextView
+                android:id="@+id/tvExpression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:maxLines="2"
+                android:ellipsize="start"
+                android:letterSpacing="0.04"
+                android:shadowColor="#80000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="6"
+                android:text=""
+                android:textColor="@color/text_secondary"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:ellipsize="start"
+                android:shadowColor="#99000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="12"
+                android:text="0"
+                android:textColor="@color/text_primary"
+                android:textSize="58sp" />
+        </LinearLayout>
+
+        <!-- 键盘（玻璃面板覆盖的区域） -->
+        <LinearLayout
+            android:id="@+id/keypad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:ellipsize="start"
-            android:text="0"
-            android:textColor="@color/text_primary"
-            android:textSize="56sp"
-            android:textStyle="normal" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-    <!-- 键盘 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            <LinearLayout style="@style/KeyRow">
+                <TextView android:id="@+id/btnClear" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_clear" />
+                <ImageButton android:id="@+id/btnBack" style="@style/KeyFn" android:contentDescription="@string/label_back" android:scaleType="center" android:src="@drawable/ic_backspace" />
+                <TextView android:id="@+id/btnPercent" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_percent" />
+                <TextView android:id="@+id/btnDivide" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_divide" />
+            </LinearLayout>
 
-        <LinearLayout style="@style/KeyRow">
-            <TextView android:id="@+id/btnClear" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_clear" />
-            <ImageButton android:id="@+id/btnBack" style="@style/KeyFn" android:contentDescription="@string/label_back" android:scaleType="center" android:src="@drawable/ic_backspace" />
-            <TextView android:id="@+id/btnPercent" style="@style/KeyFn" android:clickable="true" android:focusable="true" android:text="@string/label_percent" />
-            <TextView android:id="@+id/btnDivide" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_divide" />
-        </LinearLayout>
+            <LinearLayout style="@style/KeyRow">
+                <TextView android:id="@+id/btn7" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="7" />
+                <TextView android:id="@+id/btn8" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="8" />
+                <TextView android:id="@+id/btn9" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="9" />
+                <TextView android:id="@+id/btnMultiply" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_multiply" />
+            </LinearLayout>
 
-        <LinearLayout style="@style/KeyRow">
-            <TextView android:id="@+id/btn7" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="7" />
-            <TextView android:id="@+id/btn8" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="8" />
-            <TextView android:id="@+id/btn9" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="9" />
-            <TextView android:id="@+id/btnMultiply" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_multiply" />
-        </LinearLayout>
+            <LinearLayout style="@style/KeyRow">
+                <TextView android:id="@+id/btn4" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="4" />
+                <TextView android:id="@+id/btn5" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="5" />
+                <TextView android:id="@+id/btn6" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="6" />
+                <TextView android:id="@+id/btnMinus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_minus" />
+            </LinearLayout>
 
-        <LinearLayout style="@style/KeyRow">
-            <TextView android:id="@+id/btn4" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="4" />
-            <TextView android:id="@+id/btn5" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="5" />
-            <TextView android:id="@+id/btn6" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="6" />
-            <TextView android:id="@+id/btnMinus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_minus" />
-        </LinearLayout>
+            <LinearLayout style="@style/KeyRow">
+                <TextView android:id="@+id/btn1" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="1" />
+                <TextView android:id="@+id/btn2" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="2" />
+                <TextView android:id="@+id/btn3" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="3" />
+                <TextView android:id="@+id/btnPlus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_plus" />
+            </LinearLayout>
 
-        <LinearLayout style="@style/KeyRow">
-            <TextView android:id="@+id/btn1" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="1" />
-            <TextView android:id="@+id/btn2" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="2" />
-            <TextView android:id="@+id/btn3" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="3" />
-            <TextView android:id="@+id/btnPlus" style="@style/KeyOp" android:clickable="true" android:focusable="true" android:text="@string/label_plus" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/KeyRow">
-            <TextView android:id="@+id/btnSign" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_sign" />
-            <TextView android:id="@+id/btn0" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_zero" />
-            <TextView android:id="@+id/btnDot" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_dot" />
-            <TextView android:id="@+id/btnEquals" style="@style/KeyEq" android:clickable="true" android:focusable="true" android:text="@string/label_equals" />
+            <LinearLayout style="@style/KeyRow">
+                <TextView android:id="@+id/btnSign" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_sign" />
+                <TextView android:id="@+id/btn0" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_zero" />
+                <TextView android:id="@+id/btnDot" style="@style/KeyNum" android:clickable="true" android:focusable="true" android:text="@string/label_dot" />
+                <TextView android:id="@+id/btnEquals" style="@style/KeyEq" android:clickable="true" android:focusable="true" android:text="@string/label_equals" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

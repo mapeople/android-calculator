@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_deep">#FF07090F</color>
+    <color name="bg_deep">#FF06080E</color>
     <color name="bg_panel">#FF11151F</color>
-    <color name="key_num">#FF1B212D</color>
-    <color name="key_fn">#FF2A3242</color>
+    <color name="key_num">#16FFFFFF</color>
+    <color name="key_fn">#0DFFFFFF</color>
     <color name="accent">#FF4C8DFF</color>
-    <color name="text_primary">#FFF2F5FA</color>
-    <color name="text_secondary">#FF8A94A6</color>
+    <color name="accent_soft">#FF8FC4FF</color>
+    <color name="text_primary">#FFF6F9FF</color>
+    <color name="text_secondary">#B3B8C6D8</color>
 </resources>

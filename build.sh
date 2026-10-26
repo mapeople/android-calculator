@@ -18,7 +18,7 @@ BT="$ANDROID_HOME/build-tools/34.0.0"
 PLATFORM="$ANDROID_HOME/platforms/android-34/android.jar"
 
 APP_NAME="Calculator"
-VERSION="1.0.0"
+VERSION="2.1.0"
 MIN_SDK=21
 TARGET_SDK=34
 

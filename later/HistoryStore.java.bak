@@ -1,0 +1,98 @@
+package com.mapeople.calculator;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 计算历史：内存 + SharedPreferences 持久化，最多保留 {@link #MAX} 条。
+ *
+ * 存储格式：每条记录一行，用 {@code \u0001} 分隔「表达式」与「结果」，
+ * 记录之间用 {@code \n} 分隔。表达式里不会出现这两个字符，因此不必转义。
+ */
+public final class HistoryStore {
+
+    public static final int MAX = 60;
+    private static final String PREF = "calc_history";
+    private static final String KEY = "items";
+    private static final char SEP = '\u0001';
+
+    /** 单条记录。 */
+    public static final class Item {
+        public final String expression;
+        public final String result;
+
+        public Item(String expression, String result) {
+            this.expression = expression;
+            this.result = result;
+        }
+    }
+
+    private final SharedPreferences prefs;
+    private final List<Item> items = new ArrayList<>();
+
+    public HistoryStore(Context ctx) {
+        prefs = ctx.getApplicationContext().getSharedPreferences(PREF, Context.MODE_PRIVATE);
+        load();
+    }
+
+    public List<Item> items() {
+        return new ArrayList<>(items);
+    }
+
+    public int size() {
+        return items.size();
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    public void add(String expression, String result) {
+        if (expression == null || result == null || expression.isEmpty()) {
+            return;
+        }
+        Item it = new Item(expression, result);
+        items.add(0, it);
+        while (items.size() > MAX) {
+            items.remove(items.size() - 1);
+        }
+        save();
+    }
+
+    public void clear() {
+        items.clear();
+        save();
+    }
+
+    private void load() {
+        items.clear();
+        String raw = prefs.getString(KEY, "");
+        if (raw == null || raw.isEmpty()) {
+            return;
+        }
+        for (String line : raw.split("\n")) {
+            int i = line.indexOf(SEP);
+            if (i <= 0) {
+                continue;
+            }
+            items.add(new Item(line.substring(0, i), line.substring(i + 1)));
+            if (items.size() >= MAX) {
+                break;
+            }
+        }
+    }
+
+    private void save() {
+        StringBuilder sb = new StringBuilder();
+        for (Item it : items) {
+            if (sb.length() > 0) {
+                sb.append('\n');
+            }
+            sb.append(it.expression).append(SEP).append(it.result);
+        }
+        prefs.edit().putString(KEY, sb.toString()).apply();
+    }
+}
